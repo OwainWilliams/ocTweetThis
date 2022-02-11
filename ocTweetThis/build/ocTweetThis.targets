@@ -1,0 +1,27 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <ocTweetThisContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\ocTweetThis\**\*.*</ocTweetThisContentFilesPath>
+    </PropertyGroup>
+
+    <Target Name="CopyocTweetThisAssets" BeforeTargets="Build">
+        <ItemGroup>
+            <ocTweetThisContentFiles Include="$(ocTweetThisContentFilesPath)" />
+        </ItemGroup>
+        <Message Text="Copying ocTweetThis files: $(ocTweetThisContentFilesPath) - #@(ocTweetThisContentFiles->Count()) files"  Importance="high" />
+        <Copy
+            SourceFiles="@(ocTweetThisContentFiles)"
+            DestinationFiles="@(ocTweetThisContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\ocTweetThis\%(RecursiveDir)%(Filename)%(Extension)')"
+            SkipUnchangedFiles="true" />
+
+    </Target>
+
+    <Target Name="ClearocTweetThisAssets" BeforeTargets="Clean">
+        <ItemGroup>
+            <ocTweetThisDir Include="$(MSBuildProjectDirectory)\App_Plugins\ocTweetThis\" />
+        </ItemGroup>
+        <Message Text="Clear old ocTweetThis data"  Importance="high" />
+        <RemoveDir Directories="@(ocTweetThisDir)"  />
+    </Target>
+
+</Project>

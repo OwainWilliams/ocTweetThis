@@ -1,0 +1,73 @@
+﻿
+<div ng-controller="ocTweetThis as vm">
+
+
+    <umb-box>
+        <umb-box-header title="Amount of words for each property"></umb-box-header>
+        <umb-box-content>
+           
+                <div ng-repeat="(key, value) in vm.propertyWordCount">
+                    <p>Property: <span style="font-style:italic">{{key}}</span>, amount of words: <span style="font-style:italic">{{value}}</span> </p>
+                </div>
+                <hr />
+
+                <ul>
+                    <li>Current node id: <b>{{vm.CurrentNodeId}}</b></li>
+                    <li>Current node url:<b>{{vm.CurrentNodeUrl}}</b></li>
+                    <li>Current node alias: <b>{{vm.CurrentNodeAlias}}</b></li>
+                </ul>
+           
+            
+        </umb-box-content>
+   </umb-box>
+
+
+<umb-box>
+    <umb-box-content>
+        <div class="flex">
+            <div class="text-center justify-start">
+                <umb-box-header title="Create a tweet for this node"></umb-box-header>
+
+
+                <form novalidate>
+                    <textarea ng-model="vm.message" ng-trim="false" cols="40" rows="7" maxlength="280"></textarea>
+                    <p>
+                        <span>{{280 - vm.message.length}} characters left</span>
+                    </p>
+
+
+                    <p>
+                        <input type="submit" id="tweet_button" ng-click="submit(vm)" class="btn btn-primary" value="Tweet">
+                    </p>
+                </form>
+
+            </div>
+            <div class="justify-end">
+
+                <umb-property property="property" ng-repeat="property in vm.properties">
+                    <umb-property-editor model="property"></umb-property-editor>
+                </umb-property>
+
+
+                <umb-box-header title="Tweets that have been published for this node"></umb-box-header>
+                
+                <ul>
+                   
+                    <li ng-repeat="item in vm.TweetAudit">
+                        {{item.TweetMessage}} {{item.DatePublished | date: "dd.MM.y" }}
+                    </li>
+                    <li ng-if="!vm.TweetAudit.length">
+                        This node hasn't been tweeted yet.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+        
+    </umb-box-content>
+</umb-box>   
+</div>
+
+

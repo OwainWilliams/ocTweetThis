@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <ContentTargetFolders>.</ContentTargetFolders>
+        <Product>ocTweetThis</Product>
+        <PackageId>ocTweetThis</PackageId>
+        <Title>ocTweetThis</Title>
+        <Description>...</Description>
+        <Product>...</Product>
+        <PackageTags>umbraco plugin package</PackageTags>
+        <RootNamespace>ocTweetThis</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TweetinviAPI" Version="5.0.4" />
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.3.0" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\ocTweetThis\**\*.*">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        </Content>
+        <None Include="build\**\*.*">
+            <Pack>True</Pack>
+            <PackagePath>buildTransitive</PackagePath>
+        </None>
+    </ItemGroup>
+</Project>
