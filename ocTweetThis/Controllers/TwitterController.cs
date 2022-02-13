@@ -12,6 +12,8 @@ using ocTweetThis.TwitterContentApp;
 using Microsoft.Extensions.Options;
 using ocTweetThis.Composers;
 using Tweetinvi.Parameters;
+using Umbraco.Cms.Core;
+using System.Text;
 
 namespace ocTweetThis.TwitterContentApp
 {
@@ -23,30 +25,39 @@ namespace ocTweetThis.TwitterContentApp
 
         private readonly IScopeProvider scopeProvider;
 
-        private readonly IOptions<OCTweetThisSettings> _tweetSettings; 
+        private readonly IOptions<OCTweetThisSettings> _tweetSettings;
 
-        public TwitterController(ILogger<TwitterController> logger, IScopeProvider scopeProvider, IOptions<OCTweetThisSettings> tweetThisSettings)
+        private readonly IPublishedContentQuery _publishedContentQuery;
+
+        public TwitterController(ILogger<TwitterController> logger, IScopeProvider scopeProvider, IOptions<OCTweetThisSettings> tweetThisSettings, IPublishedContentQuery publishedContentQuery)
         {
             _logger = logger;
             this.scopeProvider = scopeProvider;
             this._tweetSettings = tweetThisSettings;
+            this._publishedContentQuery = publishedContentQuery;
         }
 
-        public async Task<IActionResult> Index(string message, int nodeId)
+        public async Task<IActionResult> Index(string message, int nodeId, string url)
         {
+
+            var curatedMessage =  createTweet(message, url);
+
             try
             {
                 var userClient = new TwitterClient(_tweetSettings.Value.ConsumerKey, _tweetSettings.Value.ConsumerSecret, _tweetSettings.Value.AccessToken, _tweetSettings.Value.AccessSecret);
 
-                await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(message));
+           
+                await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
+
 
                 var publishedTweet = new TweetsPublished()
                 {
                    
                     DatePublished = DateTime.Now,
-                    TweetMessage = message,
+                    TweetMessage = curatedMessage,
                     BlogPostUmbracoId = nodeId
                 };
+
                 try
                 {
                     using var scope = scopeProvider.CreateScope();
@@ -73,6 +84,18 @@ namespace ocTweetThis.TwitterContentApp
         private ActionResult View()
         {
             throw new NotImplementedException();
+        }
+
+        private string createTweet(string userMessage, string url)
+        {
+            
+           
+            StringBuilder sb = new StringBuilder();
+            sb.Append(userMessage);
+            sb.AppendLine();
+            sb.Append(url);
+
+            return sb.ToString();
         }
 
        

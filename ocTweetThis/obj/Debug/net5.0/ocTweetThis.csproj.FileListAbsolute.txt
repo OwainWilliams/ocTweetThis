@@ -1,4 +1,3 @@
-C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.csproj.AssemblyReference.cache
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.GeneratedMSBuildEditorConfig.editorconfig
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.AssemblyInfoInputs.cache
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.AssemblyInfo.cs

@@ -15,5 +15,7 @@ namespace ocTweetThis.Models
         public int BlogPostUmbracoId { get; set; }
         public string TweetMessage { get; set; }
         public DateTime DatePublished { get; set; }
+
+
     }
 }

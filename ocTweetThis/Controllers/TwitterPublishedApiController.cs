@@ -26,8 +26,9 @@ namespace ocTweetThis.TwitterContentApp
                 .From<TweetsPublished>()
                 .Where<TweetsPublished>(t => t.BlogPostUmbracoId == blognodeId);
 
-            var tweetsPublished = scope.Database.Fetch<TweetsPublished>(fluentSql);
 
+           var tweetsPublished = scope.Database.Fetch<TweetsPublished>(fluentSql);
+           
             return tweetsPublished;
         }
     }

@@ -7,7 +7,7 @@ angular.module('umbraco').factory('tweetpublishedResource',
             getAll: function ($q) {
                 return umbRequestHelper.resourcePromise(
                     $http.get("/Umbraco/backoffice/ocTweetThis/TwitterPublishedApi/GetAll"+"?blognodeId="+ $q),
-                    "Failed to retrieve all Person data");
+                    "Failed to retrieve all Tweet data");
             }
         };
     }

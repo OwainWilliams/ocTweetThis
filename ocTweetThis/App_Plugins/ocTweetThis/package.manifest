@@ -2,10 +2,10 @@
     // define the content apps you want to create
     "contentApps": [
     {
-        "name": "Tweet", // required - the name that appears under the icon
+        "name": "Tweet This", // required - the name that appears under the icon
         "alias": "twitterapp", // required - unique alias for your app
         "weight": 0, // optional, default is 0, use values between -99 and +99 to appear between the existing Content (-100) and Info (100) apps
-        "icon": "icon-megaphone color-red", // required - the icon to use
+        "icon": "twitter-brands color-blue", // required - the icon to use
         "view": "~/App_Plugins/ocTweetThis/twitter.html", // required - the location of the view file
     }
     ],

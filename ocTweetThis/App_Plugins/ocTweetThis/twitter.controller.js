@@ -5,15 +5,39 @@
         vm.CurrentNodeId = editorState.current.id;
         vm.CurrentNodeAlias = editorState.current.contentTypeAlias;
         vm.CurrentNodeUrl = GetUrl();
-
-         
-        tweetpublishedResource.getAll(vm.CurrentNodeId)
-           .then(function (data) {
-               if (Utilities.isArray(data))
-                   vm.TweetAudit = data
+        vm.ImageUrl = "";
+       
+        
+        // Get all the tweets from DB table 
+        tweetpublishedResource.getAll(vm.CurrentNodeId).then(function (data) {
+               if (Utilities.isArray(data)) 
+                vm.TweetAudit = data
            });
 
-     
+
+
+
+        GetTweetCount();
+        function GetTweetCount() {
+
+            var numOfTweets = 0;
+            tweetpublishedResource.getAll(vm.CurrentNodeId).then(function (data) {
+                if (Utilities.isArray(data)) {
+                     numOfTweets = data.length
+                    
+                }
+
+            });
+
+            $scope.model.badge = {
+                count: numOfTweets, // the number for the badge - anything non-zero triggers the badge
+                type: "warning" // optional: determines the badge color - "warning" = dark yellow, "alert" = red, anything else = blue (matching the top-menu background color)
+            };
+
+        }
+
+      
+
 
         var counter = contentResource.getById(vm.CurrentNodeId).then(function (node) {
             var properties = node.variants[0].tabs[0].properties;
@@ -24,7 +48,7 @@
             for (index = 0; index < properties.length; ++index) {
                 var words = properties[index].value;
                 var wordCount = words.trim().split(/\s+/).length;
-
+                // Get the URL from media
                 vm.propertyWordCount[properties[index].label] = wordCount;
             }
         });
@@ -34,7 +58,8 @@
             {
                 params: {
                     message: $scope.message,
-                    nodeId: $scope.CurrentNodeId
+                    nodeId: $scope.CurrentNodeId,
+                    url: $scope.CurrentNodeUrl
                 }
             };
             $http.get('/Twitter', twitterMessage);
@@ -106,6 +131,7 @@
             return null;
         };
 
+      
         function GetUrl() {
 
 

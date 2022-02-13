@@ -27,4 +27,8 @@
             <PackagePath>buildTransitive</PackagePath>
         </None>
     </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="App_Plugins\ocTweetThis\backoffice\icons\twitter-brands.svg" />
+    </ItemGroup>
 </Project>
