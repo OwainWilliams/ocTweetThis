@@ -75,10 +75,16 @@ namespace ocTweetThis.TwitterContentApp
             catch (TwitterException te)
             {
                 _logger.LogError("Error trying to publish the tweet", te);
-                return View();
+                var errRes = new JsonResult(new { messge = "Oops something went wrong" });
+                errRes.StatusCode = 500;
+
+                return errRes;
+
+
+
             }
             
-            return View();
+            return Ok();
         }
 
         private ActionResult View()

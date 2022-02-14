@@ -6,53 +6,46 @@
         vm.CurrentNodeAlias = editorState.current.contentTypeAlias;
         vm.CurrentNodeUrl = GetUrl();
         vm.ImageUrl = "";
+        var numOfTweets = 0;
        
         
         // Get all the tweets from DB table 
-        tweetpublishedResource.getAll(vm.CurrentNodeId).then(function (data) {
-               if (Utilities.isArray(data)) 
-                vm.TweetAudit = data
-           });
-
-
-
-
-        GetTweetCount();
-        function GetTweetCount() {
-
-            var numOfTweets = 0;
+        function getTweets() {
             tweetpublishedResource.getAll(vm.CurrentNodeId).then(function (data) {
                 if (Utilities.isArray(data)) {
-                     numOfTweets = data.length
-                    
+                    vm.TweetAudit = data;
+                    numOfTweets = data.length;
+                    $scope.model.badge.count = data.length;
                 }
 
             });
-
-            $scope.model.badge = {
-                count: numOfTweets, // the number for the badge - anything non-zero triggers the badge
-                type: "warning" // optional: determines the badge color - "warning" = dark yellow, "alert" = red, anything else = blue (matching the top-menu background color)
-            };
-
         }
 
+        getTweets();
+
+        $scope.model.badge = {
+            count: numOfTweets, // the number for the badge - anything non-zero triggers the badge
+            type: "warning" // optional: determines the badge color - "warning" = dark yellow, "alert" = red, anything else = blue (matching the top-menu background color)
+        };
       
 
 
-        var counter = contentResource.getById(vm.CurrentNodeId).then(function (node) {
-            var properties = node.variants[0].tabs[0].properties;
+        //var counter = contentResource.getById(vm.CurrentNodeId).then(function (node) {
+        //    var properties = node.variants[0].tabs[0].properties;
 
-            vm.propertyWordCount = {};
+        //    vm.propertyWordCount = {};
 
-            var index;
-            for (index = 0; index < properties.length; ++index) {
-                var words = properties[index].value;
-                var wordCount = words.trim().split(/\s+/).length;
-                // Get the URL from media
-                vm.propertyWordCount[properties[index].label] = wordCount;
-            }
-        });
+        //    var index;
+        //    for (index = 0; index < properties.length; ++index) {
+        //        var words = properties[index].value;
+        //        var wordCount = words.trim().split(/\s+/).length;
+        //        // Get the URL from media
+        //        vm.propertyWordCount[properties[index].label] = wordCount;
+        //    }
+        //});
 
+
+        //Submit Tweet
         $scope.submit = function ($scope) {
             var twitterMessage =
             {
@@ -62,7 +55,8 @@
                     url: $scope.CurrentNodeUrl
                 }
             };
-            $http.get('/Twitter', twitterMessage);
+            $http.get('/Twitter', twitterMessage)
+                .then(getTweets);
 
         };
 
