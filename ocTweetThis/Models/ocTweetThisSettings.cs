@@ -12,5 +12,7 @@ namespace ocTweetThis.Models
         public string ConsumerSecret { get; set; }
         public string AccessToken { get; set; }
         public string AccessSecret { get; set; }
+
+        public bool EnableLiveTweeting { get; set; }
     }
 }
