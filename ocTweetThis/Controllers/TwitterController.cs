@@ -40,19 +40,22 @@ namespace ocTweetThis.TwitterContentApp
         public async Task<IActionResult> Index(string message, int nodeId, string url)
         {
 
-            var curatedMessage =  createTweet(message, url);
+            var curatedMessage = createTweet(message, url);
 
             try
             {
                 var userClient = new TwitterClient(_tweetSettings.Value.ConsumerKey, _tweetSettings.Value.ConsumerSecret, _tweetSettings.Value.AccessToken, _tweetSettings.Value.AccessSecret);
 
-           
-                await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
+                if (_tweetSettings.Value.EnableLiveTweeting)
+                {
+                    await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
+                }
+
 
 
                 var publishedTweet = new TweetsPublished()
                 {
-                   
+
                     DatePublished = DateTime.Now,
                     TweetMessage = curatedMessage,
                     BlogPostUmbracoId = nodeId
@@ -66,11 +69,11 @@ namespace ocTweetThis.TwitterContentApp
 
                     scope.Complete();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.LogError("Unable to update database with tweet : ", ex);
                 }
-               
+
             }
             catch (TwitterException te)
             {
@@ -83,7 +86,7 @@ namespace ocTweetThis.TwitterContentApp
 
 
             }
-            
+
             return Ok();
         }
 
@@ -94,8 +97,8 @@ namespace ocTweetThis.TwitterContentApp
 
         private string createTweet(string userMessage, string url)
         {
-            
-           
+
+
             StringBuilder sb = new StringBuilder();
             sb.Append(userMessage);
             sb.AppendLine();
@@ -104,9 +107,9 @@ namespace ocTweetThis.TwitterContentApp
             return sb.ToString();
         }
 
-       
+
     }
 
-   
+
 }
 

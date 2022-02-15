@@ -30,21 +30,6 @@
       
 
 
-        //var counter = contentResource.getById(vm.CurrentNodeId).then(function (node) {
-        //    var properties = node.variants[0].tabs[0].properties;
-
-        //    vm.propertyWordCount = {};
-
-        //    var index;
-        //    for (index = 0; index < properties.length; ++index) {
-        //        var words = properties[index].value;
-        //        var wordCount = words.trim().split(/\s+/).length;
-        //        // Get the URL from media
-        //        vm.propertyWordCount[properties[index].label] = wordCount;
-        //    }
-        //});
-
-
         //Submit Tweet
         $scope.submit = function ($scope) {
             var twitterMessage =
@@ -58,71 +43,6 @@
             $http.get('/Twitter', twitterMessage)
                 .then(getTweets);
 
-        };
-
-
-      
-        $scope.add = function () {
-            var startNodeId = $scope.model.config && $scope.model.config.startNodeId ? $scope.model.config.startNodeId : undefined;
-          
-            var mediaPicker = {
-                startNodeId: startNodeId,
-               
-                disableFolderSelect: true,
-                onlyImages: true,
-                submit: function (model) {
-                    var selectedImage = model.selection[0];
-
-                    $scope.control.value = {
-                      
-                        id: selectedImage.id,
-                        udi: selectedImage.udi,
-                        image: selectedImage.image,
-                      
-                    };
-
-                    editorService.close();
-                },
-                close: function () {
-                    editorService.close();
-                }
-            }
-
-            editorService.mediaPicker(mediaPicker);
-        };
-
-        $scope.$watch('control.value', function (newValue, oldValue) {
-            if (angular.equals(newValue, oldValue)) {
-                return; // simply skip that
-            }
-
-            $scope.thumbnailUrl = getThumbnailUrl();
-        }, true);
-
-        function getThumbnailUrl() {
-
-            if ($scope.control.value && $scope.control.value.image) {
-                var url = $scope.control.value.image;
-
-                if ($scope.control.editor.config && $scope.control.editor.config.size) {
-                    url += "?width=" + $scope.control.editor.config.size.width;
-                    url += "&height=" + $scope.control.editor.config.size.height;
-                    url += "&animationprocessmode=first";
-
-                    if ($scope.control.value.focalPoint) {
-                        url += "&center=" + $scope.control.value.focalPoint.top + "," + $scope.control.value.focalPoint.left;
-                        url += "&mode=crop";
-                    }
-                }
-
-                // set default size if no crop present (moved from the view)
-                if (url.indexOf('?') == -1) {
-                    url += "?width=800&upscale=false&animationprocessmode=false"
-                }
-                return url;
-            }
-
-            return null;
         };
 
       
