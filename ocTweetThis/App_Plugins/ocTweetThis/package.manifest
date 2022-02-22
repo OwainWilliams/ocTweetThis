@@ -13,5 +13,8 @@
   "javascript": [
     "~/App_Plugins/ocTweetThis/twitter.controller.js",
     "~/App_Plugins/ocTweetThis/tweetpublished.resource.js"
+  ],
+  "css": [
+    "~/App_Plugins/ocTweetThis/tweetThis.css"
   ]
 }

@@ -28,6 +28,7 @@ namespace ocTweetThis.TwitterContentApp
         private readonly IOptions<OCTweetThisSettings> _tweetSettings;
 
         private readonly IPublishedContentQuery _publishedContentQuery;
+        private Tweetinvi.Models.ITweet tweet;
 
         public TwitterController(ILogger<TwitterController> logger, IScopeProvider scopeProvider, IOptions<OCTweetThisSettings> tweetThisSettings, IPublishedContentQuery publishedContentQuery)
         {
@@ -45,17 +46,18 @@ namespace ocTweetThis.TwitterContentApp
             try
             {
                 var userClient = new TwitterClient(_tweetSettings.Value.ConsumerKey, _tweetSettings.Value.ConsumerSecret, _tweetSettings.Value.AccessToken, _tweetSettings.Value.AccessSecret);
-
+                
                 if (_tweetSettings.Value.EnableLiveTweeting)
                 {
-                    await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
+                    //Publish tweet
+                     var published= await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
+                    tweet = await userClient.Tweets.GetTweetAsync(published.Id);
                 }
-
-
+              
 
                 var publishedTweet = new TweetsPublished()
                 {
-
+                    TweetUrl = tweet?.Url ?? "",
                     DatePublished = DateTime.Now,
                     TweetMessage = curatedMessage,
                     BlogPostUmbracoId = nodeId
@@ -90,10 +92,7 @@ namespace ocTweetThis.TwitterContentApp
             return Ok();
         }
 
-        private ActionResult View()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private string createTweet(string userMessage, string url)
         {
