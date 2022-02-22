@@ -2,21 +2,10 @@
 <div ng-controller="ocTweetThis as vm">
 
     <umb-box>
-        <umb-box-header title="Tweet This"></umb-box-header>
-        <umb-box-content>
-            // Content here
-        </umb-box-content>
-    </umb-box>
-
-
-
-    <umb-box>
+        <umb-box-header title="Create a tweet for this node"></umb-box-header>
         <umb-box-content>
             <div class="flex">
                 <div class="text-center justify-start">
-                    <umb-box-header title="Create a tweet for this node"></umb-box-header>
-
-
                     <form novalidate>
                         <textarea ng-model="vm.message" ng-trim="false" cols="40" rows="7" maxlength="280"></textarea>
                         <p>
@@ -30,32 +19,27 @@
                     </form>
 
                 </div>
-                <div class="justify-end">
-
-                    <umb-property property="property" ng-repeat="property in vm.properties">
-                        <umb-property-editor model="property"></umb-property-editor>
-                    </umb-property>
-
-
-                    <umb-box-header title="Tweets that have been published for this node"></umb-box-header>
-
-                    <ul>
-
-                        <li ng-repeat="item in vm.TweetAudit">
-                            {{item.TweetMessage}} {{item.DatePublished | date: "dd.MM.y" }}
-                        </li>
-                        <li ng-if="!vm.TweetAudit.length">
-                            This node hasn't been tweeted yet.
-                        </li>
-
-                    </ul>
-
-                </div>
-
             </div>
-
         </umb-box-content>
     </umb-box>
+    <umb-box>
+        <umb-box-header title="Tweets that have been published for this node"></umb-box-header>
+        <umb-box-content>
+            <ul class="tt-container wrap">
+                <li ng-repeat="item in vm.TweetAudit" class="tt-flex-item">
+                    <p>Published on:<br/> {{item.DatePublished | date: "dd MMM y" }}</p>
+                    <p>Tweet:<br /> {{item.TweetMessage}}</p>
+                    <p>
+                        <div ng-if="item.TweetUrl">
+                            <a href="{{item.TweetUrl}}" target="_blank">View tweet</a>
+                        </div>
+                    </p>
+                </li>
+                
+            </ul>
+        </umb-box-content>
+    </umb-box>
+    
 </div>
 
 

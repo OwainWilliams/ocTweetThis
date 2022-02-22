@@ -12,6 +12,7 @@ namespace ocTweetThis.Composers
         public void Compose(IUmbracoBuilder builder)
         {
             builder.AddNotificationHandler<UmbracoApplicationStartingNotification, TweetsPublishedMigration>();
+            
             builder.Services.AddOptions<OCTweetThisSettings>().Bind(builder.Config.GetSection("ocTweetThis"));
         }
     }

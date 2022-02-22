@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <ContentTargetFolders>.</ContentTargetFolders>
         <Product>ocTweetThis</Product>
         <PackageId>ocTweetThis</PackageId>
@@ -30,5 +30,6 @@
 
     <ItemGroup>
       <None Remove="App_Plugins\ocTweetThis\backoffice\icons\twitter-brands.svg" />
+      <None Remove="App_Plugins\ocTweetThis\tweetThis.css" />
     </ItemGroup>
 </Project>
