@@ -36,3 +36,6 @@ If you want to test Tweet This without an API Key from Twitter you can use Test 
 
 Just add the two optional values to the appsettings.json file - `"EnableLiveTweeting": "False"` and `"EnableTestMode": "True"`. This will allow you to see the functionality of the package, minus it actually tweeting out to your account. 
 
+
+<a href="https://www.flaticon.com/free-icons/tweet" title="tweet icons">Tweet icons created by Freepik - Flaticon</a>
+
