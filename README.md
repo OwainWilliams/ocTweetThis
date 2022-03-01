@@ -2,7 +2,8 @@
 ## What is this? 
 
 Tweet This is an Umbraco Content App.
-It sits in the backoffice of Umbraco and allows a content editor or any backoffice user of Umbraco to create a tweet for the node and then tweet to a linked account. The tweet will then be published on Twitter with a link back to the webpage.
+It sits in the backoffice of Umbraco and allows a content editor or any backoffice user of Umbraco to create a tweet for the node and then allows you to tweet to a linked account. 
+The tweet will then be published on Twitter with a link back to the webpage.
 
 There is also a history of all tweets created and a link to that tweet from the backoffice. 
 
