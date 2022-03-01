@@ -12,8 +12,20 @@ Once you have the details for your API, you need to update the appsettings.json 
     "ConsumerSecret": "twitter_consumer_secret",
     "AccessToken": "twitter_access_token",
     "AccessSecret": "twitter_access_secret",
-    "EnableLiveTweeting":  "True"
   }
  ```
 
-You can set the value for "EnableLiveTweeting" to false to allow you to test the package without tweeting out to the real world. You don't need API keys for this either. 
+## Test mode
+
+If you want to test Tweet This without an API Key from Twitter you can use Test Mode. 
+```
+    "ConsumerKey": "twitter_consumer_key",
+    "ConsumerSecret": "twitter_consumer_secret",
+    "AccessToken": "twitter_access_token",
+    "AccessSecret": "twitter_access_secret",
+    "EnableLiveTweeting": "False",
+    "EnableTestMode":  "True"
+```
+
+Just add the two optional values to the appsettings.json file - `"EnableLiveTweeting": "False"` and `"EnableTestMode": "True"`
+
