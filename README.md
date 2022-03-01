@@ -17,7 +17,7 @@ Once you have the details for your API, you need to update the appsettings.json 
 
 ## Test mode
 
-If you want to test Tweet This without an API Key from Twitter you can use Test Mode. 
+If you want to test Tweet This without an API Key from Twitter you can use Test Mode. Copy and Paste the snippet below in to the `appsettings.json
 ```
     "ConsumerKey": "twitter_consumer_key",
     "ConsumerSecret": "twitter_consumer_secret",
