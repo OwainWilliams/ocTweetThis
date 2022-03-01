@@ -5,10 +5,21 @@
         <Product>ocTweetThis</Product>
         <PackageId>ocTweetThis</PackageId>
         <Title>ocTweetThis</Title>
-        <Description>...</Description>
+        <Description>Umbraco CMS Content App to allow backoffice users to create a tweet and publish it to twitter along with a link back to the published webpage</Description>
         <Product>...</Product>
-        <PackageTags>umbraco plugin package</PackageTags>
+        <PackageTags>umbraco-v9, content-app, twitter</PackageTags>
         <RootNamespace>ocTweetThis</RootNamespace>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <Authors>Owain Williams</Authors>
+        <Company></Company>
+        <PackageProjectUrl>https://github.com/OwainWilliams/ocTweetThis</PackageProjectUrl>
+        <PackageIcon>tweet.png</PackageIcon>
+        <PackageIconUrl />
+        <RepositoryUrl>https://github.com/OwainWilliams/ocTweetThis</RepositoryUrl>
+        <Version>0.0.1</Version>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseFile>..\license.md</PackageLicenseFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,6 +33,15 @@
             <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
             <CopyToPublishDirectory>Always</CopyToPublishDirectory>
         </Content>
+        <None Include="..\..\..\..\Users\owilliams\Downloads\tweet.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
+        <None Include="..\README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+        </None>
+        <None Include="readme.md" />
         <None Include="build\**\*.*">
             <Pack>True</Pack>
             <PackagePath>buildTransitive</PackagePath>

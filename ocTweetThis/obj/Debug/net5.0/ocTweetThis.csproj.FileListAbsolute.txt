@@ -283,3 +283,4 @@ C:\dev\personal\ocTweetThis\ocTweetThis\bin\Debug\net5.0\refs\WindowsBase.dll
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.dll
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ref\ocTweetThis.dll
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.pdb
+C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net5.0\ocTweetThis.csproj.AssemblyReference.cache

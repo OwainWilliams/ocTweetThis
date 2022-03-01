@@ -31,7 +31,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "ocTweetThis/1.0.0": {
+      "ocTweetThis/0.0.1": {
         "dependencies": {
           "TweetinviAPI": "5.0.4",
           "Umbraco.Cms.Web.BackOffice": "9.3.0",
@@ -4240,7 +4240,7 @@
     }
   },
   "libraries": {
-    "ocTweetThis/1.0.0": {
+    "ocTweetThis/0.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
