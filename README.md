@@ -15,3 +15,5 @@ Once you have the details for your API, you need to update the appsettings.json 
     "EnableLiveTweeting":  "True"
   }
  ```
+
+You can set the value for "EnableLiveTweeting" to false to allow you to test the package without tweeting out to the real world. You don't need API keys for this either. 
