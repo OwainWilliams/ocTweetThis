@@ -9,6 +9,12 @@ There is also a history of all tweets created and a link to that tweet from the 
 
 <img src="assets/backoffice.jpg" alt="Tweet Icon" width="800"/>
 
+## Install
+Install via NuGet: 
+``` dotnet add package ocTweetThis --version 0.0.1 ```
+
+[![Nuget Downloads](https://img.shields.io/nuget/dt/ocTweetThis.svg)](https://www.nuget.org/packages/ocTweetThis/)
+
 
 ## Setup
 You need to get a Twitter API key from - https://developer.twitter.com/en/portal/dashboard
