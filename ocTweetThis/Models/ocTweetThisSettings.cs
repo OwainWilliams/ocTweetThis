@@ -13,6 +13,7 @@ namespace ocTweetThis.Models
         public string AccessToken { get; set; }
         public string AccessSecret { get; set; }
 
-        public bool EnableLiveTweeting { get; set; }
+        public bool EnableLiveTweeting { get; set; } = true;
+        public bool EnableTestMode { get; set; } = false;
     }
 }

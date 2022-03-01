@@ -51,7 +51,7 @@ namespace ocTweetThis.TwitterContentApp
         {
 
             var curatedMessage = createTweet(message, url);
-            bool tweetSent = false;
+           
             try
             {
                 var userClient = new TwitterClient(_tweetSettings.Value.ConsumerKey, _tweetSettings.Value.ConsumerSecret, _tweetSettings.Value.AccessToken, _tweetSettings.Value.AccessSecret);
@@ -60,31 +60,34 @@ namespace ocTweetThis.TwitterContentApp
                 {
                     //Publish tweet
                      var published= await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
-                    tweet = await userClient.Tweets.GetTweetAsync(published.Id);
+                     tweet = await userClient.Tweets.GetTweetAsync(published.Id);
                    
                 }
               
-
-                var publishedTweet = new TweetsPublished()
+                if(_tweetSettings.Value.EnableLiveTweeting || (!_tweetSettings.Value.EnableLiveTweeting && _tweetSettings.Value.EnableTestMode))
                 {
-                    TweetUrl = tweet?.Url ?? "",
-                    DatePublished = DateTime.Now,
-                    TweetMessage = curatedMessage,
-                    BlogPostUmbracoId = nodeId
-                };
+                    var publishedTweet = new TweetsPublished()
+                    {
+                        TweetUrl = tweet?.Url ?? "",
+                        DatePublished = DateTime.Now,
+                        TweetMessage = curatedMessage,
+                        BlogPostUmbracoId = nodeId
+                    };
 
-                try
-                {
-                    using var scope = scopeProvider.CreateScope();
-                    var db = scope.Database;
-                    db.Insert<TweetsPublished>(publishedTweet);
+                    try
+                    {
+                        using var scope = scopeProvider.CreateScope();
+                        var db = scope.Database;
+                        db.Insert<TweetsPublished>(publishedTweet);
 
-                    scope.Complete();
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError("Unable to update database with tweet : ", ex);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    _logger.LogError("Unable to update database with tweet : ", ex);
-                }
+               
 
             }
             catch (TwitterException te)
@@ -102,11 +105,7 @@ namespace ocTweetThis.TwitterContentApp
             return Ok();
         }
 
-        private void Events_OnTwitterException(object sender, Tweetinvi.Core.Exceptions.ITwitterException e)
-        {
-            throw new NotImplementedException();
-        }
-
+    
         private string createTweet(string userMessage, string url)
         {
 
