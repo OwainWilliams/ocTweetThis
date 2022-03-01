@@ -1,4 +1,4 @@
-# Tweet This
+# <img src="tweet.png" alt="Tweet Icon" width="50"/> Tweet This 
 ## What is this? 
 
 Tweet This is an Umbraco Content App.
