@@ -289,12 +289,12 @@ C:\dev\personal\ocTweetThis\ocTweetThis\bin\Debug\net6.0\refs\System.Xml.XmlSeri
 C:\dev\personal\ocTweetThis\ocTweetThis\bin\Debug\net6.0\refs\System.Xml.XPath.dll
 C:\dev\personal\ocTweetThis\ocTweetThis\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.dll
 C:\dev\personal\ocTweetThis\ocTweetThis\bin\Debug\net6.0\refs\WindowsBase.dll
-C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.csproj.AssemblyReference.cache
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.GeneratedMSBuildEditorConfig.editorconfig
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.AssemblyInfoInputs.cache
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.AssemblyInfo.cs
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.csproj.CoreCompileInputs.cache
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.dll
-C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\refint\ocTweetThis.dll
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.pdb
 C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ref\ocTweetThis.dll
+C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\ocTweetThis.csproj.AssemblyReference.cache
+C:\dev\personal\ocTweetThis\ocTweetThis\obj\Debug\net6.0\refint\ocTweetThis.dll

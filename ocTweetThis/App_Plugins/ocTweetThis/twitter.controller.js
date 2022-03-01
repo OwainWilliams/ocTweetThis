@@ -1,5 +1,5 @@
 ﻿angular.module("umbraco")
-    .controller("ocTweetThis", function ($scope, $timeout, $http, editorState, userService, contentResource, mediaHelper, editorService, tweetpublishedResource) {
+    .controller("ocTweetThis", function ($scope, $timeout, notificationsService, $http, editorState, userService, contentResource, mediaHelper, editorService, tweetpublishedResource) {
 
         var vm = this;
         vm.CurrentNodeId = editorState.current.id;
@@ -41,8 +41,12 @@
                 }
             };
             $http.get('/Twitter', twitterMessage)
-                .then(getTweets);
-
+                .then(function successCallBack(response) {
+                    notificationsService.success("Tweet sent!");
+                    getTweets;
+                })
+                .catch(function (err) { notificationsService.error("Sorry! Tweet failed to send"); });
+              
         };
 
       
