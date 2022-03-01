@@ -15,6 +15,9 @@ using Tweetinvi.Parameters;
 using Umbraco.Cms.Core;
 using System.Text;
 
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Services;
+
 namespace ocTweetThis.TwitterContentApp
 {
     [ApiController]
@@ -26,23 +29,29 @@ namespace ocTweetThis.TwitterContentApp
         private readonly IScopeProvider scopeProvider;
 
         private readonly IOptions<OCTweetThisSettings> _tweetSettings;
+        private readonly INotificationService _notificationService;
 
         private readonly IPublishedContentQuery _publishedContentQuery;
         private Tweetinvi.Models.ITweet tweet;
 
-        public TwitterController(ILogger<TwitterController> logger, IScopeProvider scopeProvider, IOptions<OCTweetThisSettings> tweetThisSettings, IPublishedContentQuery publishedContentQuery)
+        public TwitterController(ILogger<TwitterController> logger,
+            IScopeProvider scopeProvider,
+            IOptions<OCTweetThisSettings> tweetThisSettings,
+            IPublishedContentQuery publishedContentQuery,
+            INotificationService notificationService)
         {
             _logger = logger;
             this.scopeProvider = scopeProvider;
             this._tweetSettings = tweetThisSettings;
             this._publishedContentQuery = publishedContentQuery;
+            this._notificationService = notificationService;
         }
 
         public async Task<IActionResult> Index(string message, int nodeId, string url)
         {
 
             var curatedMessage = createTweet(message, url);
-
+            bool tweetSent = false;
             try
             {
                 var userClient = new TwitterClient(_tweetSettings.Value.ConsumerKey, _tweetSettings.Value.ConsumerSecret, _tweetSettings.Value.AccessToken, _tweetSettings.Value.AccessSecret);
@@ -52,6 +61,7 @@ namespace ocTweetThis.TwitterContentApp
                     //Publish tweet
                      var published= await userClient.Tweets.PublishTweetAsync(new PublishTweetParameters(curatedMessage));
                     tweet = await userClient.Tweets.GetTweetAsync(published.Id);
+                   
                 }
               
 
@@ -92,7 +102,10 @@ namespace ocTweetThis.TwitterContentApp
             return Ok();
         }
 
-       
+        private void Events_OnTwitterException(object sender, Tweetinvi.Core.Exceptions.ITwitterException e)
+        {
+            throw new NotImplementedException();
+        }
 
         private string createTweet(string userMessage, string url)
         {
