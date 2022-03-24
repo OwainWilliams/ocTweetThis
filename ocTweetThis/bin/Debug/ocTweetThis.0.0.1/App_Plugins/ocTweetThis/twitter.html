@@ -1,0 +1,45 @@
+﻿
+<div ng-controller="ocTweetThis as vm">
+
+    <umb-box>
+        <umb-box-header title="Create a tweet for this node"></umb-box-header>
+        <umb-box-content>
+            <div class="flex">
+                <div class="text-center justify-start">
+                    <form novalidate>
+                        <textarea ng-model="vm.message" ng-trim="false" cols="40" rows="7" maxlength="280"></textarea>
+                        <p>
+                            <span>{{280 - vm.message.length - vm.CurrentNodeUrl.length}} characters left</span>
+                        </p>
+
+
+                        <p>
+                            <button type="button" id="tweet_button" ng-click="submit(vm)" class="btn btn-primary">Tweet</button>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </umb-box-content>
+    </umb-box>
+    <umb-box>
+        <umb-box-header title="Tweets that have been published for this node"></umb-box-header>
+        <umb-box-content>
+            <ul class="tt-container wrap">
+                <li ng-repeat="item in vm.TweetAudit" class="tt-flex-item">
+                    <p>Published on:<br/> {{item.DatePublished | date: "dd MMM y" }}</p>
+                    <p>Tweet:<br /> {{item.TweetMessage}}</p>
+                    <p>
+                        <div ng-if="item.TweetUrl">
+                            <a href="{{item.TweetUrl}}" target="_blank">View tweet</a>
+                        </div>
+                    </p>
+                </li>
+                
+            </ul>
+        </umb-box-content>
+    </umb-box>
+    
+</div>
+
+

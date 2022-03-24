@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>ocTweetThis</id>
+    <version>0.0.1</version>
+    <title>ocTweetThis</title>
+    <authors>Owain Williams</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>tweet.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/OwainWilliams/ocTweetThis</projectUrl>
+    <description>Umbraco CMS Content App to allow backoffice users to create a tweet and publish it to twitter along with a link back to the published webpage</description>
+    <tags>umbraco-v9, content-app, twitter</tags>
+    <repository type="git" url="https://github.com/OwainWilliams/ocTweetThis" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="TweetinviAPI" version="5.0.4" exclude="Build,Analyzers" />
+        <dependency id="Umbraco.Cms.Web.BackOffice" version="9.3.0" exclude="Build,Analyzers" />
+        <dependency id="Umbraco.Cms.Web.Website" version="9.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
